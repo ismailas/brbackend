@@ -1,21 +1,33 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./index");
+var User = require("./user");
 
-var Event = sequelize.define('event', {
-  event_id: {
+var Newsfeed = sequelize.define('newsfeed', {
+  newsfeed_id: {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
-  evname: {
+  nfjudul: {
       type: Sequelize.STRING
+  },
+  nfimage: {
+      type: Sequelize.STRING
+  },
+  nfcontent: {
+      type: Sequelize.STRING
+  },
+  nfdate: {
+      type: Sequelize.STRING
+  },
+  users_id: {
+      type: Sequelize.INTEGER
   }
 }, {
-    tableName: 'event',
+    tableName   : 'newsfeed',
     createdAt   : 'created_at',
     updatedAt   : 'updated_at',
 });
 
+// Newsfeed.belongsTo(User, {as: 'users', foreignKey: 'users_id'});
 
-//Histori.belongsTo(Event, {as: 'event', foreignKey: 'event_id'});
-
-module.exports = Event;
+module.exports = Newsfeed;

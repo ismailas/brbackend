@@ -1,5 +1,6 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./index");
+var User = require("./user");
 
 var Event = sequelize.define('event', {
   event_id: {
@@ -8,14 +9,32 @@ var Event = sequelize.define('event', {
   },
   evname: {
       type: Sequelize.STRING
+  },
+  evorganizer: {
+      type: Sequelize.STRING
+  },
+  evaddress: {
+      type: Sequelize.STRING
+  },
+  evlat: {
+      type: Sequelize.INTEGER
+  },
+  evlong: {
+      type: Sequelize.INTEGER
+  },
+  evdate: {
+      type: Sequelize.DATE
+  },
+  users_id: {
+      type: Sequelize.INTEGER
   }
 }, {
-    tableName: 'event',
+    tableName   : 'event',
     createdAt   : 'created_at',
     updatedAt   : 'updated_at',
 });
 
+// Event.belongsTo(User, {as: 'users', foreignKey: 'users_id'});
 
-//Histori.belongsTo(Event, {as: 'event', foreignKey: 'event_id'});
 
 module.exports = Event;

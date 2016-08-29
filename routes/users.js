@@ -3,6 +3,8 @@ var router = express.Router();
 var User = require('../model/user.js')
 var Histori = require('../model/histori.js')
 var Event = require('../model/event.js')
+var Newsfeed = require('../model/newsfeed.js')
+var Bloodcall = require('../model/bloodcall.js')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -14,17 +16,24 @@ router.get('/', function(req, res, next) {
                 model: Event,
                 as: 'event'
             }]
+        },{
+            model: Newsfeed,
+            as: 'newsfeed'
+        },{
+            model: Bloodcall,
+            as: 'bloodcall'
         }]
     }).then(function(user) {
         res.send(user);
     })
 });
 
+
 /* GET users listing. */
-router.get('/:id', function(req, res, next) {
+router.get('/:users_id', function(req, res, next) {
     return User.findOne({
         where: {
-            id: req.params.id
+            users_id: req.params.users_id
         },
         include: [{
             model: Histori,
@@ -33,6 +42,12 @@ router.get('/:id', function(req, res, next) {
                 model: Event,
                 as: 'event'
             }]
+        },{
+            model: Newsfeed,
+            as: 'newsfeed'
+        },{
+            model: Bloodcall,
+            as: 'bloodcall'
         }]
     }).then(function(user) {
         res.send(user);
@@ -42,21 +57,48 @@ router.get('/:id', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     var data = req.body;
+    console.log('tes');
+    console.log(data);
     return User.create({
-        firstname: data.firstname,
-        lastname: data.lastname
+        firstname     : data.firstname,
+        lastname      : data.lastname,
+        birthdate     : data.birthdate,
+        goldar        : data.goldar,
+        jumdon        : data.jumdon,
+        firstjumdon   : data.firstjumdon,
+        lastdonate    : data.lastdonate,
+        email         : data.email,
+        password      : data.password
     }).then(function(user) {
         res.send(user);
+        console.log(data);
     })
 
 });
 
-/* POST users listing. */
-router.put('/:id', function(req, res, next) {
+
+router.post('/login', function(req, res, next) {
+    var data = req.body;
+    console.log('tes');
+    console.log(data);
+    return User.findOne({
+        where: {
+            email       : data.email,
+            password    : data.password
+        }
+    }).then(function(user) {
+        res.send(user);
+        console.log(data);
+    })
+
+});
+
+/* EDIT users listing. */
+router.put('/:users_id', function(req, res, next) {
     var data = req.body;
     return User.update({
         where: {
-            id: req.params.id
+            users_id: req.params.users_id
         }
     }, {
         firstname: data.firstname,
@@ -64,14 +106,13 @@ router.put('/:id', function(req, res, next) {
     }).then(function(user) {
         res.send(user);
     })
-
 });
 
-/* POST users listing. */
-router.delete('/:id', function(req, res, next) {
+/* DELETE users listing. */
+router.delete('/:users_id', function(req, res, next) {
     return User.destroy({
         where: {
-            id: req.params.id
+            users_id: req.params.users_id
         }
     }).then(function(user) {
         res.send(user);

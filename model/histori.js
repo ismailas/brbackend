@@ -10,6 +10,9 @@ var Histori = sequelize.define('histori', {
   hisdate: {
     type: Sequelize.DATE
   },
+  event_id: {
+    type: Sequelize.INTEGER
+  },
   type: {
       type: Sequelize.STRING
   }
