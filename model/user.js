@@ -51,6 +51,12 @@ var User = sequelize.define('users', {
   newsfeed_id: {
     type: Sequelize.INTEGER
   },
+  token: {
+    type: Sequelize.STRING
+  },
+  daycount: {
+    type: Sequelize.INTEGER
+  },
   cabang: {
     type: Sequelize.STRING
   }

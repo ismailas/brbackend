@@ -27,8 +27,13 @@ router.get('/:bloodcall_id', function(req, res, next) {
 router.post('/', function(req, res, next) {
     var data = req.body;
     return Bloodcall.create({
-        firstname: data.firstname,
-        lastname: data.lastname
+        bcdate          : data.bcdate,
+        bcgoldar        : data.bcgoldar,
+        bcatasnama      : data.bcatasnama,
+        bcketerangan    : data.bcketerangan,
+        bcstatus        : data.bcstatus,
+        bcpriority      : data.bcpriority,
+        users_id        : data.users_id
     }).then(function(bloodcall) {
         res.send(bloodcall);
     })
@@ -39,12 +44,16 @@ router.post('/', function(req, res, next) {
 router.put('/:bloodcall_id', function(req, res, next) {
     var data = req.body;
     return Bloodcall.update({
+        bcdate          : data.bcdate,
+        bcgoldar        : data.bcgoldar,
+        bcatasnama      : data.bcatasnama,
+        bcketerangan    : data.bcketerangan,
+        bcstatus        : data.bcstatus,
+        bcpriority      : data.bcpriority,
+    }, {
         where: {
             bloodcall_id: req.params.bloodcall_id
         }
-    }, {
-        firstname: data.firstname,
-        lastname: data.lastname
     }).then(function(bloodcall) {
         res.send(bloodcall);
     })

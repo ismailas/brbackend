@@ -27,8 +27,11 @@ router.get('/:newsfeed_id', function(req, res, next) {
 router.post('/', function(req, res, next) {
     var data = req.body;
     return Newsfeed.create({
-        firstname: data.firstname,
-        lastname: data.lastname
+        nfjudul     : data.nfjudul,
+        nfimage     : data.nfimage,
+        nfcontent   : data.nfcontent,
+        nfdate      : data.nfdate,
+        users_id    : data.users_id,
     }).then(function(newsfeed) {
         res.send(newsfeed);
     })
@@ -39,12 +42,14 @@ router.post('/', function(req, res, next) {
 router.put('/:newsfeed_id', function(req, res, next) {
     var data = req.body;
     return Newsfeed.update({
+        nfjudul     : data.nfjudul,
+        nfimage     : data.nfimage,
+        nfcontent   : data.nfcontent,
+        nfdate      : data.nfdate,
+    }, {
         where: {
             newsfeed_id: req.params.newsfeed_id
         }
-    }, {
-        firstname: data.firstname,
-        lastname: data.lastname
     }).then(function(newsfeed) {
         res.send(newsfeed);
     })

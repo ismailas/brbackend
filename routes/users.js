@@ -57,8 +57,6 @@ router.get('/:users_id', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     var data = req.body;
-    console.log('tes');
-    console.log(data);
     return User.create({
         firstname     : data.firstname,
         lastname      : data.lastname,
@@ -71,7 +69,6 @@ router.post('/', function(req, res, next) {
         password      : data.password
     }).then(function(user) {
         res.send(user);
-        console.log(data);
     })
 
 });
@@ -79,8 +76,6 @@ router.post('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
     var data = req.body;
-    console.log('tes');
-    console.log(data);
     return User.findOne({
         where: {
             email       : data.email,
@@ -88,7 +83,6 @@ router.post('/login', function(req, res, next) {
         }
     }).then(function(user) {
         res.send(user);
-        console.log(data);
     })
 
 });
@@ -97,12 +91,18 @@ router.post('/login', function(req, res, next) {
 router.put('/:users_id', function(req, res, next) {
     var data = req.body;
     return User.update({
+        firstname   : data.firstname,
+        lastname    : data.lastname,
+        cabang      : data.cabang,
+        email       : data.email,
+        password    : data.password,
+        birthdate   : data.birthdate,
+        goldar      : data.goldar
+
+    },{
         where: {
             users_id: req.params.users_id
         }
-    }, {
-        firstname: data.firstname,
-        lastname: data.lastname
     }).then(function(user) {
         res.send(user);
     })

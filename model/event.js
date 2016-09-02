@@ -17,10 +17,10 @@ var Event = sequelize.define('event', {
       type: Sequelize.STRING
   },
   evlat: {
-      type: Sequelize.INTEGER
+      type: Sequelize.DOUBLE
   },
-  evlong: {
-      type: Sequelize.INTEGER
+  evlng: {
+      type: Sequelize.DOUBLE
   },
   evdate: {
       type: Sequelize.DATE

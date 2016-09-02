@@ -27,8 +27,13 @@ router.get('/:event_id', function(req, res, next) {
 router.post('/', function(req, res, next) {
     var data = req.body;
     return Event.create({
-        firstname: data.firstname,
-        lastname: data.lastname
+        evname      : data.evname,
+        evorganizer : data.evorganizer,
+        evaddress   : data.evaddress,
+        evlat       : data.evlat,
+        evlng       : data.evlng,
+        evdate      : data.evdate,
+        users_id    : data.users_id,
     }).then(function(events) {
         res.send(events);
     })
@@ -39,12 +44,16 @@ router.post('/', function(req, res, next) {
 router.put('/:event_id', function(req, res, next) {
     var data = req.body;
     return Event.update({
+        evname      : data.evname,
+        evorganizer : data.evorganizer,
+        evaddress   : data.evaddress,
+        evlat       : data.evlat,
+        evlng       : data.evlng,
+        evdate      : data.evdate,
+    },{
         where: {
             event_id: req.params.event_id
         }
-    }, {
-        firstname: data.firstname,
-        lastname: data.lastname
     }).then(function(events) {
         res.send(events);
     })
