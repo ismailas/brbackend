@@ -1,5 +1,5 @@
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize('bloodrundb', 'root', '', {
+var sequelize = new Sequelize('bloodrundb', 'root', 'islanisme', {
   host: 'localhost',
   dialect: 'mysql',
 
