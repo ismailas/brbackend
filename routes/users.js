@@ -110,7 +110,7 @@ router.put('/:users_id', function(req, res, next) {
 router.put('/addday/:users_id', function(req, res, next) {
     var data = req.body;
     return User.update({
-        daycount   : data.daycount,
+        daycount   : data,
 
     },{
         where: {
