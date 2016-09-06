@@ -107,6 +107,19 @@ router.put('/:users_id', function(req, res, next) {
         res.send(user);
     })
 });
+router.put('/addday/:users_id', function(req, res, next) {
+    var data = req.body;
+    return User.update({
+        daycount   : data.daycount,
+
+    },{
+        where: {
+            users_id: req.params.users_id
+        }
+    }).then(function(user) {
+        res.send(user);
+    })
+});
 
 /* DELETE users listing. */
 router.delete('/:users_id', function(req, res, next) {
