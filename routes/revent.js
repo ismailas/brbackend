@@ -61,7 +61,7 @@ router.put('/:event_id', function(req, res, next) {
 
 /* DELETE users listing. */
 router.delete('/:event_id', function(req, res, next) {
-    return Bloodcall.destroy({
+    return Event.destroy({
         where: {
             event_id: req.params.event_id
         }
